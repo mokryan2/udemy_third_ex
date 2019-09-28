@@ -23,7 +23,6 @@ const rootReducer = (state = initialState, action) => {
 };
 // Just like in React, STATE MUST ALWAYS BE IMMUTABLE!!! We do this by using a spread operator on state and then add in the logic from here
 
-
 // ================================================= Store ===========================================
 const store = createStore(rootReducer);
 // In order for the store to work, there needs to first be a reducer! Always set reducer first!
@@ -31,6 +30,12 @@ const store = createStore(rootReducer);
 console.log(store.getState());
 // This will respond with counter:0 because all that's being done here is getting the inital state
 
+// ============================================== Subscription =======================================
+store.subscribe(() => {
+    console.log(['Subscription'], store.getState());
+});
+// Subscriptions make sure we don't have to manually call getState in order to figure out if the original state has changed.
+// This function in subscribe will be run whenever an action is dispatched and mutates the store
 
 // ========================================== Dispatching Action =====================================
 store.dispatch({ type: "INC_COUNTER" });
@@ -42,6 +47,3 @@ console.log(store.getState());
 // You can also pass "payloads" along with the type values; really most anything can be passed along with the type, but you need to be specific!
 // The console.log will respond with counter:11 because it's running both of the if statements set in the reducer
 
-
-
-// ============================================== Subscription =======================================
