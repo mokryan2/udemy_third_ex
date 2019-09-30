@@ -31,12 +31,13 @@ const mapDispatchToProps = dispatch => {
     return {
         onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
         onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
-        onAdditionCounter: () => dispatch({ type: "ADD" }),
-        onSubtractionCounter: () => dispatch({ type: "SUB" })
+        onAdditionCounter: () => dispatch({ type: "ADD", value: 12 }),
+        onSubtractionCounter: () => dispatch({ type: "SUB", value: 12 })
     };
 };
 // Dispatch is a helper function from the react-redux package that gives access to the store behind the scenes.
 // Remember that the type must always be a CAPITALIZED STRING; This is mainly because that's the general convention
 // These dispatches should be considered as props which is reflected in the counter control
+// Aside from type, remember that you can pass additional fields (typically it's something called payload, but we can just use value here)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

@@ -15,12 +15,13 @@ const reducer = (state = initialState, action) => {
     }
     if (action.type === "ADD") {
         return {
-            counter: state.counter + 12
+            counter: state.counter + action.value
         }
+        // Because we pass value to the dispatch methods, we can use action.value to get the number we want to include
     }
     if (action.type === "SUB") {
         return {
-            counter: state.counter - 12
+            counter: state.counter - action.value
         }
     }
     return state
