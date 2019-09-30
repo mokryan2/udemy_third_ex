@@ -17,6 +17,13 @@ class Counter extends Component {
                 <CounterControl label="Subtract 12" clicked={this.props.onSubtractionCounter} />
                 <CounterControl label="Multiply 5" clicked={this.props.onMultiplyCounter} />
                 <CounterControl label="Divide 7" clicked={this.props.onDivideCounter} />
+                
+                <br/>
+
+                <button onClick={this.props.onSaveReuslt}>Save Result</button>
+                <ul>
+                    <li onClick={this.props.onRemoveResult}></li>
+                </ul>
             </div>
         );
     }
@@ -35,8 +42,10 @@ const mapDispatchToProps = dispatch => {
         onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
         onAdditionCounter: () => dispatch({ type: "ADD", value: 12 }),
         onSubtractionCounter: () => dispatch({ type: "SUB", value: 12 }),
-        onMultiplyCounter: ()=> dispatch({type: "MULTIPLY" , value: 5}),
-        onDivideCounter: ()=> dispatch({type: "DIVIDE" , value: 7})
+        onMultiplyCounter: () => dispatch({ type: "MULTIPLY", value: 5 }),
+        onDivideCounter: () => dispatch({ type: "DIVIDE", value: 7 }),
+        onSaveReuslt: () => dispatch({ type: "SAVE_RESULT" }),
+        onRemoveResult: () => dispatch({ type: "REMOVE_RESULT" })
     };
 };
 // Dispatch is a helper function from the react-redux package that gives access to the store behind the scenes.
