@@ -21,7 +21,16 @@ const reducer = (state = initialState, action) => {
             return {
                 counter: state.counter - action.value
             }
+        case "MULTIPLY":
+            return {
+                counter: state.counter * action.value
+            }
+        case "DIVIDE":
+            return {
+                counter: state.counter / action.value
+            }
     }
+    // Unlike how we typically use a switch statement, we don't need to include breaks after each case due to the fact return naturally exits out of the function
     return state
 };
 
