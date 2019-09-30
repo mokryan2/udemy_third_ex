@@ -31,7 +31,7 @@ class Counter extends Component {
         return (
             <div>
                 <CounterOutput value={this.props.ctr} />
-                <CounterControl label="Increment" clicked={() => this.counterChangedHandler('inc')} />
+                <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
                 <CounterControl label="Decrement" clicked={() => this.counterChangedHandler('dec')} />
                 <CounterControl label="Add 5" clicked={() => this.counterChangedHandler('add', 5)} />
                 <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler('sub', 5)} />
@@ -47,4 +47,12 @@ const mapStateToProps = state => {
 };
 // This will store a function with expects state stored in redux as the input and returns a JS object which is a map of prop names and slices of the stored state
 
-export default connect(mapStateToProps)(Counter);
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrementCounter: () => dispatch({ type: "INCREMENT" })
+    };
+};
+// Dispatch is a helper function from the react-redux package that gives access to the store behind the scenes.
+// Remember that the type must always be a CAPITALIZED STRING
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
