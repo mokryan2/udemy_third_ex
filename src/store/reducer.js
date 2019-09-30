@@ -13,6 +13,16 @@ const reducer = (state = initialState, action) => {
             counter: state.counter - 1
         }
     }
+    if (action.type === "ADD") {
+        return {
+            counter: state.counter + 12
+        }
+    }
+    if (action.type === "SUB") {
+        return {
+            counter: state.counter - 12
+        }
+    }
     return state
 };
 
