@@ -6,26 +6,6 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
-
-    counterChangedHandler = (action, value) => {
-        switch (action) {
-            case 'inc':
-                this.setState((prevState) => { return { counter: prevState.counter + 1 } })
-                break;
-            case 'dec':
-                this.setState((prevState) => { return { counter: prevState.counter - 1 } })
-                break;
-            case 'add':
-                this.setState((prevState) => { return { counter: prevState.counter + value } })
-                break;
-            case 'sub':
-                this.setState((prevState) => { return { counter: prevState.counter - value } })
-                break;
-        }
-    }
 
     render() {
         return (
@@ -56,6 +36,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 // Dispatch is a helper function from the react-redux package that gives access to the store behind the scenes.
-// Remember that the type must always be a CAPITALIZED STRING
+// Remember that the type must always be a CAPITALIZED STRING; This is mainly because that's the general convention
+// These dispatches should be considered as props which is reflected in the counter control
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
