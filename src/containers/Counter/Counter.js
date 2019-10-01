@@ -23,7 +23,7 @@ class Counter extends Component {
                 <button onClick={this.props.onSaveResult}>Save Result</button>
                 <ul>
                     {this.props.storedResults.map(strResult => (
-                        <li key={strResult.id} onClick={this.props.onRemoveResult}> {strResult.value.toFixed(2)} </li>
+                        <li key={strResult.id} onClick={() => this.props.onRemoveResult(strResult.id)}> {strResult.value.toFixed(2)} </li>
                     ))}
                 </ul>
             </div>
@@ -48,7 +48,8 @@ const mapDispatchToProps = dispatch => {
         onMultiplyCounter: () => dispatch({ type: "MULTIPLY", value: 5 }),
         onDivideCounter: () => dispatch({ type: "DIVIDE", value: 7 }),
         onSaveResult: () => dispatch({ type: "SAVE_RESULT" }),
-        onRemoveResult: () => dispatch({ type: "REMOVE_RESULT" })
+        onRemoveResult: (id) => dispatch({ type: "REMOVE_RESULT", resultElId: id })
+        // onRemoveResult expects the id of the specific element which can then be used to immutably remove an element from the results array
     };
 };
 // Dispatch is a helper function from the react-redux package that gives access to the store behind the scenes.
