@@ -17,12 +17,14 @@ class Counter extends Component {
                 <CounterControl label="Subtract 12" clicked={this.props.onSubtractionCounter} />
                 <CounterControl label="Multiply 5" clicked={this.props.onMultiplyCounter} />
                 <CounterControl label="Divide 7" clicked={this.props.onDivideCounter} />
-                
-                <br/>
 
-                <button onClick={this.props.onSaveReuslt}>Save Result</button>
+                <br />
+
+                <button onClick={this.props.onSaveResult}>Save Result</button>
                 <ul>
-                    <li onClick={this.props.onRemoveResult}></li>
+                    {this.props.storedResults.map(strResult => (
+                        <li key={strResult.id} onClick={this.props.onRemoveResult}> {strResult.value.toFixed(2)} </li>
+                    ))}
                 </ul>
             </div>
         );
@@ -31,7 +33,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter
+        ctr: state.counter,
+        storedResults: state.results
     }
 };
 // This will store a function with expects state stored in redux as the input and returns a JS object which is a map of prop names and slices of the stored state
@@ -44,7 +47,7 @@ const mapDispatchToProps = dispatch => {
         onSubtractionCounter: () => dispatch({ type: "SUB", value: 12 }),
         onMultiplyCounter: () => dispatch({ type: "MULTIPLY", value: 5 }),
         onDivideCounter: () => dispatch({ type: "DIVIDE", value: 7 }),
-        onSaveReuslt: () => dispatch({ type: "SAVE_RESULT" }),
+        onSaveResult: () => dispatch({ type: "SAVE_RESULT" }),
         onRemoveResult: () => dispatch({ type: "REMOVE_RESULT" })
     };
 };
