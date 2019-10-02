@@ -1,3 +1,5 @@
+import * as actionTypes from "./actions";
+
 const initialState = {
     counter: 0,
     results: []
@@ -5,42 +7,42 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case "INCREMENT":
+        case actionTypes.INCREMENT:
             const newState = Object.assign({}, state);
             newState.counter = state.counter + 1
             return newState
-        case "DECREMENT":
+        case actionTypes.DECREMENT:
             return {
                 ...state,
                 counter: state.counter - 1
             }
-        case "ADD":
+        case actionTypes.ADD:
             return {
                 ...state,
                 counter: state.counter + action.value
                 // Because we pass value to the dispatch methods, we can use action.value to get the number we want to include
             }
-        case "SUB":
+        case actionTypes.SUB:
             return {
                 ...state,
                 counter: state.counter - action.value
             }
-        case "MULTIPLY":
+        case actionTypes.MULTIPLY:
             return {
                 ...state,
                 counter: state.counter * action.value
             }
-        case "DIVIDE":
+        case actionTypes.DIVIDE:
             return {
                 ...state,
                 counter: state.counter / action.value
             }
-        case "SAVE_RESULT":
+        case actionTypes.SAVE_RESULT:
             return {
                 ...state,
                 results: state.results.concat({ id: new Date(), value: state.counter })
             }
-        case "REMOVE_RESULT":
+        case actionTypes.REMOVE_RESULT:
             const newArray = state.results.filter(result => result.id !== action.resultElId);
             return {
                 ...state,
