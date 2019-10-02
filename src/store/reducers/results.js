@@ -9,7 +9,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SAVE_RESULT:
             return {
                 ...state,
-                results: state.results.concat({ id: new Date(), value: state.counter })
+                results: state.results.concat({ id: new Date(), value: action.result })
+                // We need to change the state.counter value to action.result because the file no longer has local access to the state of the counter
             }
         case actionTypes.REMOVE_RESULT:
             const newArray = state.results.filter(result => result.id !== action.resultElId);

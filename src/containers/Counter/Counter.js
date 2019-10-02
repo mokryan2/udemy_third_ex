@@ -20,7 +20,7 @@ class Counter extends Component {
 
                 <br />
 
-                <button onClick={this.props.onSaveResult}>Save Result</button>
+                <button onClick={() => this.props.onSaveResult(this.props.ctr)}>Save Result</button>
                 <ul>
                     {this.props.storedResults.map(strResult => (
                         <li key={strResult.id} onClick={() => this.props.onRemoveResult(strResult.id)}> {strResult.value.toFixed(2)} </li>
@@ -33,8 +33,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter,
-        storedResults: state.results
+        ctr: state.ctr.counter,
+        storedResults: state.res.results
     }
 };
 // This will store a function with expects state stored in redux as the input and returns a JS object which is a map of prop names and slices of the stored state
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
         onSubtractionCounter: () => dispatch({ type: actionTypes.SUB, value: 12 }),
         onMultiplyCounter: () => dispatch({ type: actionTypes.MULTIPLY, value: 5 }),
         onDivideCounter: () => dispatch({ type: actionTypes.DIVIDE, value: 7 }),
-        onSaveResult: () => dispatch({ type: actionTypes.SAVE_RESULT }),
+        onSaveResult: (result) => dispatch({ type: actionTypes.SAVE_RESULT, result: result }),
         onRemoveResult: (id) => dispatch({ type: actionTypes.REMOVE_RESULT, resultElId: id })
         // onRemoveResult expects the id of the specific element which can then be used to immutably remove an element from the results array
     };
