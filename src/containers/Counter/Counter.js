@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
-
+import * as actionTypes from "../../store/actions";
 class Counter extends Component {
 
     render() {
@@ -41,14 +41,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
-        onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
-        onAdditionCounter: () => dispatch({ type: "ADD", value: 12 }),
-        onSubtractionCounter: () => dispatch({ type: "SUB", value: 12 }),
-        onMultiplyCounter: () => dispatch({ type: "MULTIPLY", value: 5 }),
-        onDivideCounter: () => dispatch({ type: "DIVIDE", value: 7 }),
-        onSaveResult: () => dispatch({ type: "SAVE_RESULT" }),
-        onRemoveResult: (id) => dispatch({ type: "REMOVE_RESULT", resultElId: id })
+        onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT }),
+        onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT }),
+        onAdditionCounter: () => dispatch({ type: actionTypes.ADD, value: 12 }),
+        onSubtractionCounter: () => dispatch({ type: actionTypes.SUB, value: 12 }),
+        onMultiplyCounter: () => dispatch({ type: actionTypes.MULTIPLY, value: 5 }),
+        onDivideCounter: () => dispatch({ type: actionTypes.DIVIDE, value: 7 }),
+        onSaveResult: () => dispatch({ type: actionTypes.SAVE_RESULT }),
+        onRemoveResult: (id) => dispatch({ type: actionTypes.REMOVE_RESULT, resultElId: id })
         // onRemoveResult expects the id of the specific element which can then be used to immutably remove an element from the results array
     };
 };
