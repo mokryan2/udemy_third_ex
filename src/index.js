@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import counterReducer from "./store/reducers/counter";
 import resultsReducer from "./store/reducers/results";
 import { Provider } from "react-redux";
@@ -22,15 +22,16 @@ const logger = store => {
         // to let the action continue to the reducer
         return action => {
             console.log("[Middleware] Dispatching", action);
-            next(action)
+            const result = next(action);
+            console.log("[Middleware] next state", store.getState())
+            return result
             // This will allow the action to continue to the reducer
         }
     }
 };
 // This is what we call a middleware. It is software that acts as a bridge between an operating system or database and applications, especially on a network.
-// 
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(
     <Provider store={store}>
