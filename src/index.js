@@ -16,6 +16,20 @@ const rootReducer = combineReducers({
 // We need to have the index file combine the reducers first before creating the store;
 // thankfully, redux has the helper function that will combine the objects for us
 
+const logger = store => {
+    return next => {
+        // next can technically be called whatever we want, but it makes sense in this situation b/c it'll be a function we can execute
+        // to let the action continue to the reducer
+        return action => {
+            console.log("[Middleware] Dispatching", action);
+            next(action)
+            // This will allow the action to continue to the reducer
+        }
+    }
+};
+// This is what we call a middleware. It is software that acts as a bridge between an operating system or database and applications, especially on a network.
+// 
+
 const store = createStore(rootReducer);
 
 ReactDOM.render(
