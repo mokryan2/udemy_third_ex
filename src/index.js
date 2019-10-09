@@ -32,6 +32,9 @@ const logger = store => {
 // This is what we call a middleware. It is software that acts as a bridge between an operating system or database and applications, especially on a network.
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// This is needed to effectively work with the DevTools for redux. There is plenty of useful things that can be done thanks to the redux dev tools; specifically,
+// one of the most useful things offered by the devtools is the ability to travel through time as the state changes. Think of it as console.log, but with all the iformation
+// that is connected to said dispatches/actions
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
 
