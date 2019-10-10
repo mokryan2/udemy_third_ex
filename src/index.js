@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+// redux-thunk is needed to run asynchronous  logic w/in the store
 import counterReducer from "./store/reducers/counter";
 import resultsReducer from "./store/reducers/results";
 import { Provider } from "react-redux";
@@ -36,7 +38,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // one of the most useful things offered by the devtools is the ability to travel through time as the state changes. Think of it as console.log, but with all the iformation
 // that is connected to said dispatches/actions
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
