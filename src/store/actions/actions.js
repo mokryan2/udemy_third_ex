@@ -45,12 +45,26 @@ export const divide = (value) => {
         value: value
     }
 };
-export const saveResult = (result) => {
+
+export const storeResult = result => {
     return {
         type: SAVE_RESULT,
         result: result
     }
 };
+
+export const saveResult = (result) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(storeResult(result))
+        },
+            2000
+        );
+    }
+
+};
+// In this isntance, the storeResult method works in tandem with the saveResult method. To avoid an infinite loop, the additional storeResult method is needed
+// so that it can be called in the saveResult method. If you run this in the app, the result will now be displayed after 2 seconds!
 export const removeResult = (resElId) => {
     return {
         type: REMOVE_RESULT,
