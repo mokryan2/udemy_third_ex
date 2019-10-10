@@ -11,41 +11,6 @@ export const REMOVE_RESULT = "REMOVE_RESULT";
 // Becasue everything is stored here in a specific manner, we're guaranteed to know if something
 // is typed improperly in the reducer.js file
 
-export const increment = () => {
-    return {
-        type: INCREMENT
-    }
-};
-export const decrement = () => {
-    return {
-        type: DECREMENT
-    }
-};
-export const add = (value) => {
-    return {
-        type: ADD,
-        value: value
-    }
-};
-export const sub = (value) => {
-    return {
-        type: SUB,
-        value: value
-    }
-};
-export const multiply = (value) => {
-    return {
-        type: MULTIPLY,
-        value: value
-    }
-};
-export const divide = (value) => {
-    return {
-        type: DIVIDE,
-        value: value
-    }
-};
-
 export const storeResult = result => {
     return {
         type: SAVE_RESULT,
@@ -65,6 +30,7 @@ export const saveResult = (result) => {
 };
 // In this isntance, the storeResult method works in tandem with the saveResult method. To avoid an infinite loop, the additional storeResult method is needed
 // so that it can be called in the saveResult method. If you run this in the app, the result will now be displayed after 2 seconds!
+// It is also worth noting that only synchronous actions can edit the store
 export const removeResult = (resElId) => {
     return {
         type: REMOVE_RESULT,
