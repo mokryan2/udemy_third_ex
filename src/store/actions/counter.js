@@ -34,3 +34,5 @@ export const divide = (value) => {
         value: value
     }
 };
+
+// These are action creators; they're functions that return an action/creates an action.
