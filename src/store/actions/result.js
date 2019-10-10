@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 
 export const storeResult = result => {
     return {
-        type: SAVE_RESULT,
+        type: actionTypes.SAVE_RESULT,
         result: result
     }
 };
@@ -22,7 +22,7 @@ export const saveResult = (result) => {
 // It is also worth noting that only synchronous actions can edit the store
 export const removeResult = (resElId) => {
     return {
-        type: REMOVE_RESULT,
+        type: actionTypes.REMOVE_RESULT,
         resultElId: resElId
     }
 };
